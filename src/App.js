@@ -17,11 +17,16 @@ function App() {
         setIsLoading(false);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [term]);
 
   return (
     <div className="container mx-auto">
       <ImageSearch searchText={(text) => setTerm(text)} />
+      {!isLoading && images.length === 0 && (
+        <h2 className="text-6xl text-center mx-auto mt-32">
+          No Images Found 😞
+        </h2>
+      )}
       {isLoading ? (
         <h1 className="text-6xl text-center mx-auto mt-32">Loading...</h1>
       ) : (
